@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
-class Detail extends React.Component{
+class Detail extends Component{
 	state = {
-		person: '',
+		person:'',
 	}
 	componentDidMount(){
 		let id = this.props.match.params.person_id;
@@ -16,38 +15,44 @@ class Detail extends React.Component{
 				})
 			})
 	}
-	 // onDelete(){
-  //   let id = this.state.person.id;
-  //   axios.delete('http://5d36d86c86300e0014b647c7.mockapi.io/todos/'+ id)
-  //   .then(response => {
-  //   this.props.history.push('/');
-  //   })
-  //   .catch(err=>console.log(err));
-  //   }
 	render(){
-		const backHome = (
-		<div>
-		<Link to="/">Back</Link>
-		</div>
-		)
 		const person = this.state.person ? (
-			<div className="border-dep">
-				<span className="center"><b>Name:</b> <em>"{this.state.person.name}"</em></span>
-				<br/> 
-				<p><b>ID:</b> <em>"{this.state.person.id}"</em></p>
-			</div>
+			<table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{this.state.person.id}</td>
+                        <td>{this.state.person.name}</td>
+                    </tr>
+                </tbody>
+            </table>
 			):
-		( <div className="border-dep">
-				<span className="center"><b>Name:</b> <em></em></span>
-				<br/> 
-				<p><b>ID:</b> <em></em></p>
-			</div>)
+		(<div>
+			<table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>...</td>
+                        <td>...</td>
+                    </tr>
+                </tbody>
+            </table>
+		</div>)
 		return(
-			<div className="container">
-				<button>{backHome}</button>
+			<div className="container center">
+				<Link to="/">Back</Link>
 				<br/>
 				{ person }
-			    <button onClick={this.onDelete} className="btn blue">Xóa</button>
 			</div>
 		)
 	}
