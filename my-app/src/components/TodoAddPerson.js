@@ -13,8 +13,10 @@ class AddPerson extends Component{
         axios.post(`http://5d36d86c86300e0014b647c7.mockapi.io/todos`,{
            name: this.state.name
         })
-        this.componentDidMount();
-
+        .then(res => {
+           console.log(res);
+           console.log(res.data);
+        })
     }
     render(){
         return(
